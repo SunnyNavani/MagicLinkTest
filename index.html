@@ -10,7 +10,7 @@
     <script>
       /* 2️⃣ Initialize Magic Instance */
       let magic = new Magic("pk_live_D5EA1E346A791DB7");
-
+      const _emailid="";
       /* 3️⃣ Implement Render Function */
       const render = async () => {
         let html = '';
@@ -54,11 +54,26 @@
 
         document.getElementById("app").innerHTML = html;
       };
+      function setEmail(emailid){
+        _emailid = emailid;
+       // handleLogin(event);
+       submitEmailData();
+      }
+      function submitEmailData(){
+        const email = _emailid;//new FormData(e.target).get("email");
+        const redirectURI = `${window.location.origin}/callback`;
+        if (email) {
+          /* One-liner login 🤯 */
+          await magic.auth.loginWithMagicLink({ email, redirectURI });
+          render();
+        }
+      }
+
 
       /* 4️⃣ Implement Login Handler */
       const handleLogin = async (e) => {
         e.preventDefault();
-        const email = new FormData(e.target).get("email");
+        const email = _emailid;//new FormData(e.target).get("email");
         const redirectURI = `${window.location.origin}/callback`;
         if (email) {
           /* One-liner login 🤯 */
