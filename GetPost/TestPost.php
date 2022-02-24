@@ -5,3 +5,4 @@ $curScore = (int) $_POST["curSex"];
 file_put_contents($highscoreFile,$curScore);
 echo "Score ". $curScore;
 echo "HighScore ". $curhighscore;
+?>
