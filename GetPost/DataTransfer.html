@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>UNITYBROWSERCHECK</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+
+  <script>
+var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+function sendMessageToUnity(message) {
+   var val= GetAllURLparam();
+    console.log("Method Called with "+val);
+      
+    UnityInAppBrowser.sendMessageFromJS(val);
+    
+}
+
+function GetAllURLparam() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var sub = urlParams.get('sub');
+       return sub;
+       
+    }
+
+
+
+function isIOS() {
+if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+ return true;
+ } else {
+ return false;
+ }
+}
+
+function isAndroid() {
+return (/android/i.test(userAgent));
+}
+
+  </script>
+<body>
+<button type="button" id="clickBtn" onclick="sendMessageToUnity('abcd')" style="padding: 20%;" >Click Me!</button>
+</body>
+</html>
